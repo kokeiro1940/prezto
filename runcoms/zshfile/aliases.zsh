@@ -9,3 +9,6 @@ alias gcomm='git commit -m '
 alias gbrah='git branch '
 alias gcheo='git checkout '
 alias gpull='git pull '
+
+# one_liner
+alias lf='find ./ -type f -print | xargs grep ' 
