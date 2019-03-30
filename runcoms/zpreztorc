@@ -35,6 +35,12 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'git' \
+  'docker' \
+  'ruby' \
+  'rails' \
+  'python' \
+  'ssh' \
   'prompt'
 
 #
