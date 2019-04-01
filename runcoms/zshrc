@@ -13,4 +13,7 @@ fi
 # Customize to your needs...
 
 # load all files in ./zshrc_files such as alias.zsh, util.zsh ...
-source ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc_files/??*
+for zshfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zsh_files/??*; do
+    [ "$zshfile" = "^README.md" ] && continue
+    source "$rcfile"
+done
