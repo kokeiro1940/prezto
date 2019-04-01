@@ -1,54 +1,60 @@
+# LastUpdate: 2019/04/01
+# Authors:
+#   kokeiro1940
+# Ref
+#   symbol: https://graphemica.com/%E2%9D%AD
+
 # Load dependencies.
 pmodload 'helper'
 
 # Define variables.
-_prompt_paradox_current_bg='NONE'
-_prompt_paradox_segment_separator=''
-_prompt_paradox_start_time=$SECONDS
+_prompt_kokemushi_current_bg='NONE'
+_prompt_kokemushi_segment_separator=''
+_prompt_kokemushi_start_time=$SECONDS
 
-#   local bg fg によって、引数を与え、それら（色）を番号に変換している
-function prompt_paradox_start_segment {
+# prompt_kokemushi_start_segment color_name or color_id
+function prompt_kokemushi_start_segment {
   local bg fg
   [[ -n "$1" ]] && bg="%K{$1}" || bg="%k"
   [[ -n "$2" ]] && fg="%F{$2}" || fg="%f"
-  if [[ "$_prompt_paradox_current_bg" != 'NONE' && "$1" != "$_prompt_paradox_current_bg" ]]; then
-    print -n " $bg%F{$_prompt_paradox_current_bg}$_prompt_paradox_segment_separator$fg "
+  if [[ "$_prompt_kokemushi_current_bg" != 'NONE' && "$1" != "$_prompt_kokemushi_current_bg" ]]; then
+    print -n " $bg%F{$_prompt_kokemushi_current_bg}$_prompt_kokemushi_segment_separator$fg "
   else
     print -n "$bg$fg "
   fi
-  _prompt_paradox_current_bg="$1"
+  _prompt_kokemushi_current_bg="$1"
   [[ -n "$3" ]] && print -n "$3"
 }
 
-# この関数、いらないかも
-function prompt_paradox_end_segment {
-  if [[ -n "$_prompt_paradox_current_bg" ]]; then
-    print -n " %k%F{$_prompt_paradox_current_bg}$_prompt_paradox_segment_separator"
+function prompt_kokemushi_end_segment {
+  if [[ -n "$_prompt_kokemushi_current_bg" ]]; then
+    print -n " %k%F{$_prompt_kokemushi_current_bg}$_prompt_kokemushi_segment_separator"
   else
     print -n "%k"
   fi
   print -n "%f"
-  _prompt_paradox_current_bg=''
+  _prompt_kokemushi_current_bg=''
 }
 
-# prompt_paradox_start_segment black default >>> black:背景色 default:文字色
-function prompt_paradox_build_prompt {
-  prompt_paradox_start_segment black default '%(?::%F{red}✘ )%(!:%F{yellow}⚡ :)%(1j:%F{cyan}⚙ :)%F{blue}%n%F{red}@%F{green}%m%f'
-  prompt_paradox_start_segment blue black '$_prompt_paradox_pwd'
+# prompt_kokemushi_start_segment black default >>> arg_1:background_color arg_2:font_color (color_name or color_id)
+# color_id: https://h2ham.net/zsh-prompt-color
+function prompt_kokemushi_build_prompt {
+  prompt_kokemushi_start_segment black default '%B%F{green}❮%F{yellow}❮%F{white}❮ %(?::%F{red}✘ )%(!:%F{yellow}⚡ :)%(1j:%F{cyan}⚙ :)%F{green}%n%F{white} @ %F{green}%m%f%b'
+  prompt_kokemushi_start_segment white black '$_prompt_kokemushi_pwd'
 
   if [[ -n "$git_info" ]]; then
-    prompt_paradox_start_segment green black '${(e)git_info[ref]}${(e)git_info[status]}'
+    prompt_kokemushi_start_segment green black '${(e)git_info[ref]}${(e)git_info[status]}'
   fi
 
-  if [[ -n "$python_info" ]]; then
-    prompt_paradox_start_segment white black '${(e)python_info[virtualenv]}'
-  fi
+#   if [[ -n "$python_info" ]]; then
+#     prompt_kokemushi_start_segment white black '${(e)python_info[virtualenv]}'
+#   fi
 
-  prompt_paradox_end_segment
+  prompt_kokemushi_end_segment
 }
 
-prompt_paradox_print_elapsed_time() {
-  local end_time=$(( SECONDS - _prompt_paradox_start_time ))
+prompt_kokemushi_print_elapsed_time() {
+  local end_time=$(( SECONDS - _prompt_kokemushi_start_time ))
   local hours minutes seconds remainder
 
   if (( end_time >= 3600 )); then
@@ -56,22 +62,22 @@ prompt_paradox_print_elapsed_time() {
     remainder=$(( end_time % 3600 ))
     minutes=$(( remainder / 60 ))
     seconds=$(( remainder % 60 ))
-    print -P "%B%F{red}>>> elapsed time ${hours}h${minutes}m${seconds}s%b"
+    print -P "%B%F{red}--- elapsed time ${hours}h${minutes}m${seconds}s%b"
   elif (( end_time >= 60 )); then
     minutes=$(( end_time / 60 ))
     seconds=$(( end_time % 60 ))
-    print -P "%B%F{yellow}>>> elapsed time ${minutes}m${seconds}s%b"
+    print -P "%B%F{red}--- elapsed time ${minutes}m${seconds}s%b"
   elif (( end_time > 10 )); then
-    print -P "%B%F{green}>>> elapsed time ${end_time}s%b"
+    print -P "%B%F{red}--- elapsed time ${end_time}s%b"
   fi
 }
 
-function prompt_paradox_precmd {
+function prompt_kokemushi_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
 
   # Format PWD.
-  _prompt_paradox_pwd=$(prompt-pwd)
+  _prompt_kokemushi_pwd=$(prompt-pwd)
 
   # Get Git repository information.
   if (( $+functions[git-info] )); then
@@ -79,19 +85,19 @@ function prompt_paradox_precmd {
   fi
 
   # Get Python environment information.
-  if (( $+functions[python-info] )); then
-    python-info
-  fi
+#   if (( $+functions[python-info] )); then
+#     python-info
+#   fi
 
   # Calculate and print the elapsed time.
-  prompt_paradox_print_elapsed_time
+  prompt_kokemushi_print_elapsed_time
 }
 
-function prompt_paradox_preexec {
-  _prompt_paradox_start_time="$SECONDS"
+function prompt_kokemushi_preexec {
+  _prompt_kokemushi_start_time="$SECONDS"
 }
 
-function prompt_paradox_setup {
+function prompt_kokemushi_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
@@ -100,12 +106,12 @@ function prompt_paradox_setup {
   autoload -Uz add-zsh-hook
 
   # Add hook for calling git-info before each command.
-  add-zsh-hook preexec prompt_paradox_preexec
-  add-zsh-hook precmd prompt_paradox_precmd
+  add-zsh-hook preexec prompt_kokemushi_preexec
+  add-zsh-hook precmd prompt_kokemushi_precmd
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{blue}❯%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{white}❯%F{yellow}❯%F{green}❯%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format '%F{red}♺%f'
   zstyle ':prezto:module:editor:info:keymap:alternate' format '%B%F{red}❮%f%b'
 
@@ -134,10 +140,10 @@ function prompt_paradox_setup {
 
   # Define prompts.
   PROMPT='
-${(e)$(prompt_paradox_build_prompt)}
+${(e)$(prompt_kokemushi_build_prompt)}
  ${editor_info[keymap]} '
-  RPROMPT='%F{blue}[%F{green}%D{%H:%M:%S}%F{blue}]%f'
+  RPROMPT='%B%F{white} ❮- %F{green}%D{%H:%M:%S}%F{white}%f%b'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
-prompt_paradox_setup "$@"
+prompt_kokemushi_setup "$@"
