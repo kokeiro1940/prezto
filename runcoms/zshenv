@@ -9,3 +9,7 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+# load all files in ./zshenv_files such as path.zsh ...
+# ref: https://qiita.com/muran001/items/7b104d33f5ea3f75353f
+source ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv_files/??*
