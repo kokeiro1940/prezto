@@ -142,7 +142,7 @@ function prompt_kokemushi_setup {
   PROMPT='
 ${(e)$(prompt_kokemushi_build_prompt)}
  ${editor_info[keymap]} '
-  RPROMPT='%B%F{white} ❮- %F{green}%D{%H:%M:%S}%F{white}%f%b'
+  RPROMPT='%B%F{white} ❮- %U%F{green}%D{%H:%M:%S}%F{white}%f%b%u'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
