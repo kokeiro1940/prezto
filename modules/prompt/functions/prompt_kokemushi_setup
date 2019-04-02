@@ -39,7 +39,7 @@ function prompt_kokemushi_end_segment {
 # prompt_kokemushi_start_segment black default >>> arg_1:background_color arg_2:font_color (color_name or color_id)
 # color_id: https://h2ham.net/zsh-prompt-color
 function prompt_kokemushi_build_prompt {
-  prompt_kokemushi_start_segment black default '%B%F{green}❮%F{yellow}❮%F{white}❮ %(?::%F{red}✘ )%(!:%F{yellow}⚡ :)%(1j:%F{cyan}⚙ :)%F{green}%n%F{white} @ %F{green}%m%f%b'
+  prompt_kokemushi_start_segment black default '%B%F{green}❮%F{yellow}❮%F{white}❮ %(?::%F{red}✘ )%(!:%F{yellow}⚡ :)%(1j:%F{cyan}⚙ :)%U%F{green}%n%u%F{white} @ %U%F{green}%m%f%b%u'
   prompt_kokemushi_start_segment white black '$_prompt_kokemushi_pwd'
 
   if [[ -n "$git_info" ]]; then
@@ -142,7 +142,7 @@ function prompt_kokemushi_setup {
   PROMPT='
 ${(e)$(prompt_kokemushi_build_prompt)}
  ${editor_info[keymap]} '
-  RPROMPT='%B%F{white} ❮- %F{green}%D{%H:%M:%S}%F{white}%f%b'
+  RPROMPT='%B%F{white} ❮- %U%F{green}%D{%H:%M:%S}%F{white}%f%b%u'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
