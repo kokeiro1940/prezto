@@ -25,5 +25,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # export PATH="$HOME/.rbenv/shims:$PATH"
 # eval "$(rbenv init -)"
 
+# go
+export GOPATH="${HOME}/devbox"
+export PATH="$GOPATH/bin:$PATH"
+
 # nodebrew
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
