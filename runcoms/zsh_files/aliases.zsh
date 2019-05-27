@@ -8,6 +8,16 @@ alias gcomm='git commit -m '
 alias gbrah='git branch '
 alias gcheo='git checkout '
 alias gpull='git pull '
+alias gpush='git push origin HEAD'
+alias gpushF='git push -f origin HEAD'
+function gupd () {
+    CURRENT_BRANCH=`echo git branch --contains=HEAD`
+    git checkout master
+    git pull origin master
+    ghit checkout $CURRENT_BRANCH
+    git rebase --continue
+}
+alias gupd='gupd'
 
 # one_liner
 # looking for the files which include the word ARG

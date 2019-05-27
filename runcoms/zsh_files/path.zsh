@@ -31,3 +31,7 @@ export PATH="$GOPATH/bin:$PATH"
 
 # nodebrew
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
+
+# GCP command (If you change the DIR of 'google-cloud-sdk,' change this command. )
+source ~/devbox/command/gcp/google-cloud-sdk/completion.zsh.inc
+source ~/devbox/command/gcp/google-cloud-sdk/path.zsh.inc
