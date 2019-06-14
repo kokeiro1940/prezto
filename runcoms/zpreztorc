@@ -41,7 +41,7 @@ zstyle ':prezto:load' pmodule \
   'rails' \
   'python' \
   'ssh' \
-  'contrib-kubernetes' \
+  'kubernetes' \
   'prompt'
 
 #
