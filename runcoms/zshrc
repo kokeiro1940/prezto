@@ -17,3 +17,6 @@ for zshfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zsh_files/??*; do
     [ "$zshfile" = "^README.md" ] && continue
     source "$zshfile"
 done
+
+# load ~/.zshrc.local ...
+source ~/zshrc.local
