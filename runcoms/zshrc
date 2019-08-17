@@ -18,5 +18,5 @@ for zshfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zsh_files/??*; do
     source "$zshfile"
 done
 
-# load ~/.zshrc.local ...
+# load ~/zshrc.local ...
 source ~/zshrc.local
