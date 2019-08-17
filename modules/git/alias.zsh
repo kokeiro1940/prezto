@@ -271,4 +271,17 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gwC='git clean -f'
   alias gwx='git rm -r'
   alias gwX='git rm -rf'
+
+  # kokeiro Origin
+  alias gstas='git status '
+  alias gdif='git diff '
+  alias glog='git log '
+  alias gshow='git show '
+  alias gadd='git add '
+  alias gcomm='git commit -m '
+  alias gbrah='git branch '
+  alias gcheo='git checkout '
+  alias gpull='git pull '
+  alias gpush='git push origin HEAD'
+  alias gpushF='git push -f origin HEAD'
 fi
