@@ -32,9 +32,5 @@ export PATH="$GOPATH/bin:$PATH"
 # nodebrew
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
-# GCP command (If you change the DIR of 'google-cloud-sdk,' change this command. )
-source ~/devbox/command/gcp/google-cloud-sdk/completion.zsh.inc
-source ~/devbox/command/gcp/google-cloud-sdk/path.zsh.inc
-
 # git diff-highlight
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight

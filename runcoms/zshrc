@@ -19,4 +19,6 @@ for zshfile in ${ZDOTDIR:-$HOME}/.zprezto/runcoms/zsh_files/??*; do
 done
 
 # load ~/zshrc.local ...
-source ~/zshrc.local
+if [ -s ~/zshrc.local ]; then
+  source ~/zshrc.local
+fi
