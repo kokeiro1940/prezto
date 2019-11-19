@@ -12,6 +12,34 @@ _prompt_kokemushi_current_bg='NONE'
 _prompt_kokemushi_segment_separator=''
 _prompt_kokemushi_start_time=$SECONDS
 
+# kuberation variables
+KUBERATION_ENABLED=off
+KUBERATION_CTX
+KUBERATION_NS
+KUBE_PS1_KUBECONFIG_CACHE
+
+# kuberation on
+kubeon() {
+  KUBERATION_ENABLED=on
+}
+
+# kuberation off
+kubeoff() {
+  KUBERATION_ENABLED=off
+}
+
+# kubectx kuberns が取れるかのチェック
+
+# KUBERATION_CTX の取得
+
+# KUBERATION_NS の取得
+
+# prompt 構築部分
+function prompt_kokemushi_kuberation_segment {
+
+}
+
+
 # prompt_kokemushi_start_segment color_name or color_id
 function prompt_kokemushi_start_segment {
   local bg fg
@@ -49,6 +77,8 @@ function prompt_kokemushi_build_prompt {
 #   if [[ -n "$python_info" ]]; then
 #     prompt_kokemushi_start_segment white black '${(e)python_info[virtualenv]}'
 #   fi
+
+# kuberation プロンプト作成呼び出し(kubeonになっているか確認する)
 
   prompt_kokemushi_end_segment
 }
