@@ -34,3 +34,14 @@ export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 # git diff-highlight
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
+
+# kube_ps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+KUBE_PS1_SYMBOL_DEFAULT=' %F{black}\u2388%f '
+KUBE_PS1_PREFIX=''
+KUBE_PS1_SEPARATOR=''
+KUBE_PS1_DIVIDER="%F{black} ⁝ %f"
+KUBE_PS1_SUFFIX=' '
+KUBE_PS1_BG_COLOR='white'
+KUBE_PS1_CTX_COLOR='yellow'
+KUBE_PS1_NS_COLOR='green'

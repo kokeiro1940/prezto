@@ -20,7 +20,7 @@ function prompt_kokemushi_start_segment {
   if [[ "$_prompt_kokemushi_current_bg" != 'NONE' && "$1" != "$_prompt_kokemushi_current_bg" ]]; then
     print -n " $bg%F{$_prompt_kokemushi_current_bg}$_prompt_kokemushi_segment_separator$fg "
   else
-    print -n "$bg$fg "
+    print -n " $bg$fg "
   fi
   _prompt_kokemushi_current_bg="$1"
   [[ -n "$3" ]] && print -n "$3"
@@ -41,7 +41,7 @@ function prompt_kokemushi_end_segment {
 function prompt_kokemushi_build_prompt {
   prompt_kokemushi_start_segment default default '%B%F{green}❮%F{yellow}❮%F{white}❮ %(?::%F{red}✘ )%(!:%F{yellow}⚡ :)%(1j:%F{cyan}⚙ :)%F{green}%n%F{white} @ %F{green}%m%f%b'
   prompt_kokemushi_start_segment white black '$_prompt_kokemushi_pwd'
-
+  prompt_kokemushi_start_segment default default '$(kube_ps1)'
   if [[ -n "$git_info" ]]; then
     prompt_kokemushi_start_segment green black '${(e)git_info[ref]}${(e)git_info[status]}'
   fi
