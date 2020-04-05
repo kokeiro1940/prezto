@@ -43,7 +43,7 @@ function prompt_kokemushi_build_prompt {
   prompt_kokemushi_start_segment white black '$_prompt_kokemushi_pwd'
   prompt_kokemushi_start_segment default default '$(kube_ps1)'
   if [[ -n "$git_info" ]]; then
-    prompt_kokemushi_start_segment green black '${(e)git_info[ref]}${(e)git_info[status]}'
+    prompt_kokemushi_start_segment green black '✎${(e)git_info[ref]}${(e)git_info[status]}'
   fi
 
 #   if [[ -n "$python_info" ]]; then
