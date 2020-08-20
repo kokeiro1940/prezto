@@ -10,3 +10,5 @@ alias chrome='open /Applications/Google\ Chrome.app '
 
 # TODO: exec JavaScript on mac
 alias js='osascript -l JavaScript '
+
+alias ssh='~/bin/ssh-change-bg'
